@@ -1,0 +1,31 @@
+zpid README
+
+zpid is a simple module written in C for performing discrete PID control loop calculations -- taking an error signal as input and calculating a control effort output, typically sent onwards to an actuator (for instance, as a motor voltage command). 
+
+In addition to handling the standard proportional, integral, and derivative calculations, the module supports additional features like integral anti-windup, derivative filtering, and output saturation. There are also options for how internal state calculations are performed (e.g. forward Euler, backward Euler, or trapezoidal methods).
+
+One of the design goals here is simplicity. A controller is typically used in the following manner:
+(1) Define controller parameters
+(2) Create a new controller
+(3) Update controller iteratively at each time step
+(4) Stop and destroy controller
+
+The zpid module relies on the lower-level zblock module for discrete-time calculations. zblock itself is useful, for instance, in defining a simple first-order plant model for simulating a complete closed-loop control system.
+
+zpid is short for "discrete PID", "z" representing the z-transform variable used in the analysis of discrete-time systems.
+
+Standard libraries: 
+	<stdlib.h>
+	<math.h> 
+	<stdio.h>
+
+Header files:
+	"zblock.h"
+	"zpid.h"
+
+Source files:
+	zblock.c
+	zpid.c
+
+Sample usage:
+	main.c
